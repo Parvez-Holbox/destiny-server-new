@@ -55,6 +55,10 @@ app.post("/create-shopify-order", async (req, res) => {
     const { variant_id,quantity, customerEmail, customerName, shippingAddress, billingAddress, event } = req.body;
     console.log("event ................");
     console.log(event);
+
+    console.log(variant_id);
+    console.log(quantity);
+    
     // Construct the Shopify order payload
     const shopifyOrderData = {
         order: {
