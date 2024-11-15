@@ -98,7 +98,7 @@ app.post("/create-shopify-order", async (req, res) => {
             financial_status: "paid",
         },
     };
-    console.log(billingAddress);
+    console.log(shopifyOrderData.line_items);
     console.log(shopifyOrderData);
     
     try {
