@@ -16,7 +16,6 @@ const GRAPHQL_ADMIN_API = `https://${process.env.SHOPIFY_DOMAIN}/admin/api/2023-
 
 console.log(GRAPHQL_STOREFRONT_API);
 console.log(GRAPHQL_ADMIN_API);
-console.log(stripe);
 console.log(process.env.SHOPIFY_ADMIN_ACCESS_TOKEN);
 
 
