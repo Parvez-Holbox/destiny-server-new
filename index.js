@@ -81,19 +81,21 @@ app.post("/create-shopify-order", async (req, res) => {
                 zip: shippingAddress?.postalCode || "N/A",
             },
             billing_address: {
-                first_name: customerName.split(" ")[0],
-                last_name: customerName.split(" ")[1] || "",
-                address1: billingAddress?.line1 || billingAddress?.addressLine?.[0] || "N/A",
-                address2: billingAddress?.line2 || billingAddress?.addressLine?.[1] || "",
-                city: billingAddress?.city || "N/A",
-                province: billingAddress?.region || "N/A",
-                country: billingAddress?.country || "N/A",
-                zip: billingAddress?.postalCode || "N/A",
+                first_name: billingAddress.name?.split(" ")[0] || customerName.split(" ")[0],
+                last_name: billingAddress.name?.split(" ")[1] || customerName.split(" ")[1] || "",
+                address1: billingAddress.line1 || billingAddress.addressLine?.[0] || "N/A",
+                address2: billingAddress.line2 || billingAddress.addressLine?.[1] || "",
+                city: billingAddress.city || "N/A",
+                province: billingAddress.state || billingAddress.region || "N/A",
+                country: billingAddress.country || "N/A",
+                zip: billingAddress.postal_code || billingAddress.postalCode || "N/A",
             },
             financial_status: "paid",
         },
     };
-
+    console.log(billingAddress);
+    console.log(shopifyOrderData);
+    
     try {
 
         const options = {
