@@ -65,7 +65,7 @@ app.post("/create-shopify-order", async (req, res) => {
             line_items: [
                 {
                     variant_id: variant_id,
-                    quantity: quantity,
+                    quantity: quantity
                 },
             ],
             inventory_behaviour: "decrement_obeying_policy",
