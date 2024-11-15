@@ -24,10 +24,10 @@ app.post('/create-payment-intent', async (req, res) => {
     try {
 
         const { amount, currency, variantId, productTitles, quantity } = req.body;
-
+        const amountInCents = Math.round(amount * 100); 
         // Create a PaymentIntent with the specified amount and currency
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: amount, // Amount in cents (e.g., $10.00 is 1000 cents)
+            amount: amountInCents, // Amount in cents (e.g., $10.00 is 1000 cents)
             currency: currency, // e.g., 'usd'
             payment_method_types: ['card'], // Specify accepted payment methods
             metadata: {
