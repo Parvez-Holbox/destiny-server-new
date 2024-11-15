@@ -52,8 +52,9 @@ app.post('/create-payment-intent', async (req, res) => {
 
 app.post("/create-shopify-order", async (req, res) => {
    
-    const { variant_id,quantity, customerEmail, customerName, shippingAddress, billingAddress } = req.body;
-
+    const { variant_id,quantity, customerEmail, customerName, shippingAddress, billingAddress, event } = req.body;
+    console.log("event ................");
+    console.log(event);
     // Construct the Shopify order payload
     const shopifyOrderData = {
         order: {
@@ -72,22 +73,22 @@ app.post("/create-shopify-order", async (req, res) => {
             shipping_address: {
                 first_name: customerName.split(" ")[0],
                 last_name: customerName.split(" ")[1] || "",
-                address1: shippingAddress.addressLine[0],
-                address2: shippingAddress.addressLine[1] || "",
-                city: shippingAddress.city,
-                province: shippingAddress.region,
-                country: shippingAddress.country,
-                zip: shippingAddress.postalCode,
+                address1: shippingAddress?.line1 || shippingAddress?.addressLine?.[0] || "N/A",
+                address2: shippingAddress?.line2 || shippingAddress?.addressLine?.[1] || "",
+                city: shippingAddress?.city || "N/A",
+                province: shippingAddress?.region || "N/A",
+                country: shippingAddress?.country || "N/A",
+                zip: shippingAddress?.postalCode || "N/A",
             },
             billing_address: {
                 first_name: customerName.split(" ")[0],
                 last_name: customerName.split(" ")[1] || "",
-                address1: billingAddress.addressLine[0],
-                address2: billingAddress.addressLine[1] || "",
-                city: billingAddress.city,
-                province: billingAddress.region,
-                country: billingAddress.country,
-                zip: billingAddress.postalCode,
+                address1: billingAddress?.line1 || billingAddress?.addressLine?.[0] || "N/A",
+                address2: billingAddress?.line2 || billingAddress?.addressLine?.[1] || "",
+                city: billingAddress?.city || "N/A",
+                province: billingAddress?.region || "N/A",
+                country: billingAddress?.country || "N/A",
+                zip: billingAddress?.postalCode || "N/A",
             },
             financial_status: "paid",
         },
