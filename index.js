@@ -52,17 +52,7 @@ app.post('/create-payment-intent', async (req, res) => {
 
 app.post("/create-shopify-order", async (req, res) => {
    
-    const { paymentIntentId, customerEmail, customerName, shippingAddress, billingAddress } = req.body;
-
-    console.log('paymentIntentId : ', paymentIntentId);
-
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
-
-    console.log(paymentIntent);
-    
-
-    const variant_id = paymentIntent.metadata.variant_id;
-    const quantity = parseInt(paymentIntent.metadata.quantity, 10);
+    const { variant_id,quantity, customerEmail, customerName, shippingAddress, billingAddress } = req.body;
 
     // Construct the Shopify order payload
     const shopifyOrderData = {
