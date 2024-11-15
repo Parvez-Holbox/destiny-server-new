@@ -58,13 +58,14 @@ app.post("/create-shopify-order", async (req, res) => {
 
     console.log(variant_id);
     console.log(quantity);
+    const variantId = variant_id.split("/").pop();
     
     // Construct the Shopify order payload
     const shopifyOrderData = {
         order: {
             line_items: [
                 {
-                    variant_id: variant_id,
+                    variant_id: variantId,
                     quantity: quantity
                 },
             ],
