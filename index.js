@@ -22,7 +22,8 @@ console.log(process.env.SHOPIFY_ADMIN_ACCESS_TOKEN);
 app.post('/create-payment-intent', async (req, res) => {
 
     try {
-
+        console.log('coming into payment intent');
+        
         const { amount, currency, variantId, productTitles, quantity } = req.body;
         const amountInCents = Math.round(amount * 100); 
         // Create a PaymentIntent with the specified amount and currency
